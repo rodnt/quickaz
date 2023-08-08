@@ -1,0 +1,14 @@
+eastus
+eastus2
+southcentralus
+westus2
+westus3
+northeurope
+swedencentral
+brazilsouth
+eastus2euap
+centraluseuap
+brazilsoutheast
+canadaeast
+brazilus
+devfabric
