@@ -5,7 +5,9 @@ import json
 import concurrent.futures
 import re
 import socket
-
+import random
+import time
+import subprocess
 
 headers = {
 
@@ -18,12 +20,15 @@ headers = {
 
 
 class Enumeration:
-    def __init__(self, hostname: str, emails: str, output_path: str, threads: int = 2, proxy: str = None):
+    def __init__(self, hostname: str, emails: str, output_path: str, threads: int = 2, proxy: str = None, socks: str = None, tor: bool = False):
         self.hostname = hostname
         self.emails = emails if emails else None
         self.output = output_path if output_path else None
         self.thread_count = int(threads) if threads else 2
         self.proxy = {"http": proxy, "https": proxy} if proxy else None
+        self.request_count = 0
+        self.socks = {'http':  f'socks5://{socks}','https': f'socks5://{socks}'} if socks else None
+        self.tor = tor
 
     def get_user_realm_info(self):
         base_url = "https://login.microsoftonline.com/getuserrealm.srf"
@@ -89,19 +94,37 @@ class Enumeration:
             print(f"Error: {e}")
     
     def check_email(self, email):
+        self.request_count += 1
+        if self.request_count % 10 == 0:
+            number = random.randint(1, 100)
+            random_email = f'random{number}@{self.hostname}'
+            if self.is_email_valid(random_email):
+                print(color_bad(f"Random email is valid, you are blocked, sleep 10 seconds.. and try again.."))
+                time.sleep(10)
+                if self.is_email_valid(random_email):
+                    print(color_bad(f"Random email still valid, you are blocked!!"))
+        else: 
+            if self.is_email_valid(email) and self.output is not None:
+                print(f'{email} - VALID')
+                file_write = 'valid_emails' + self.hostname + '.txt'
+                with open(self.output + file_write, 'a+') as output_file:
+                    output_file.write(email + '\n')
+
+    def is_email_valid(self, email):
         url = 'https://login.microsoftonline.com/common/GetCredentialType'
-        _ = requests.Session()
         body = '{"Username":"%s"}' % email
+        session = requests.Session()
+        if self.tor: 
+            session.proxies = {'http':  'socks5://localhost:9050',
+                   'https': 'socks5://localhost:9050'}
+            subprocess.run(["sudo", "service", "tor", "restart"])
+        if self.socks:
+            session.proxies = self.socks
+
         request = requests.post(url, data=body, headers=headers, verify=False, proxies=self.proxy)
         response = request.text
         valid = re.search('"IfExistsResult":0,', response)
-
-        if valid and self.output is not None:
-            print(f'{email} - VALID')
-            file_write = 'valid_emails' + self.hostname + '.txt'
-            with open(self.output+file_write, 'a+') as output_file: 
-                output_file.write(email+'\n')
-
+        return valid is not None
 
     def process_emails(self):
         if self.emails:
