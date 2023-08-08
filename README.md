@@ -62,6 +62,24 @@ Options:
   - [x] Given wordlist
   - [x] Schema generator
 
+##### Usage
+
+-  Brute force blobs
+     - `python3 quickaz.py example.com --brute-blob`
+- Enumerate emails at office 365 with list of know emails
+  - `python3 quickaz.py example.com --enum-mails --emails <mails.txt> --output example`
+- Brute Force all services
+  - `python3 quickaz.py example --enumall --brute-blob --output example`
+- Usage with proxy
+  - `python3 quickaz.py example.com --enumall --output example --proxy 127.0.0.1:808`
+
+##### Install
+
+```bash
+python3 -m pip install typer[all]
+python3 -m pip install requests
+```
+
 ##### Useful google dorks
 ```
 
