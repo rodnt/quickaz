@@ -1,7 +1,7 @@
 
 # **QuickAZ** 
 
-> QuickAZ, find (Maybe) attack surfaces (Azure) 🚩🐍
+> QuickAZ, find (Maybe) attacks surfaces (Azure) 🚩🐍
 
 ![](static/lol.jpg)
 
