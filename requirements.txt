@@ -1,0 +1,2 @@
+python3 -m pip install typer[all]
+python3 -m pip install requests
