@@ -47,6 +47,10 @@ Options:
   --help                          Show this message and exit.
 ```
 
+##### TODO List :)
+
+[https://github.com/rodnt/quickaz/blob/main/TODO.md](https://github.com/rodnt/quickaz/blob/main/TODO.md)
+
 #### Features
 - [x] Enumerate tenant
 - [x] Enumerate users from a given hostname
