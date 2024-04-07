@@ -3,7 +3,7 @@
 
 > QuickAZ, find (Maybe) attacks surfaces (Azure) 🚩🐍
 
-![](static/lol.jpg)
+![](static/Hello.jpeg)
 
 ```console
 Usage: quickaz.py [OPTIONS] HOSTNAME [PERMUTATION_WORDLIST_PATH] [BRUTE_BLOB]
