@@ -1,2 +1,13 @@
-python3 -m pip install typer[all]
-python3 -m pip install requests
+certifi==2024.2.2; python_version >= '3.6'
+charset-normalizer==3.3.2; python_full_version >= '3.7.0'
+click==8.1.7; python_version >= '3.7'
+idna==3.6; python_version >= '3.5'
+markdown-it-py==3.0.0; python_version >= '3.8'
+mdurl==0.1.2; python_version >= '3.7'
+pygments==2.17.2; python_version >= '3.7'
+requests==2.31.0; python_version >= '3.7'
+rich==13.7.1; python_full_version >= '3.7.0'
+shellingham==1.5.4; python_version >= '3.7'
+typer[all]==0.12.1; python_version >= '3.7'
+typing-extensions==4.11.0; python_version >= '3.8'
+urllib3==2.2.1; python_version >= '3.8'

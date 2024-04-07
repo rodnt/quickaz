@@ -4,6 +4,7 @@ from utils.colors import color_good, color_bad
 from enumeration import Enumeration
 from brute import Brute
 from utils import organizer
+from utils import dates_formater
 from enumeration import Enumeration
 from generator import gen
 from typing_extensions import Annotated
@@ -29,12 +30,15 @@ def main_menu(hostname: str, permutation_wordlist_path: Annotated[str, typer.Opt
             os.mkdir(output)
         except FileExistsError:
             print(color_bad(f"[-] {output} directory already exists."))
-    if output == "":
+            print(color_good(f"[+] creating a new output directory.."))
+            dates_formater.create_directory_with_timestamp(output)
+    else: 
         output = "output"
         try:
             os.mkdir(output)
         except FileExistsError:
             print(color_bad(f"[-] {output} directory already exists."))
+            dates_formater.create_directory_with_timestamp(output)
 
     if hostname:
         message = color_good(f"[+] Hostname set to: {hostname}\n[+] Wordlist set to: {permutation_wordlist_path}\n[+] Blob enumeration set to: {brute_blob}\n[+] Paths wordlist set to: {paths_wordlist_path}\n[+] Regions wordlist set to: {regions_wordlist_path} \n[+] Verbose set to: {verbose}\n[+] Emails wordlist set to: {emails}\n[+] Output file set to: {output}, \n[+] Enumerate emails set to: {enum_mails}\n[+] Generate emails set to: {gen_emails}\n[+] First names wordlist set to: {first_names}\n[+] Last names wordlist set to: {last_names}")
@@ -67,8 +71,8 @@ def main_menu(hostname: str, permutation_wordlist_path: Annotated[str, typer.Opt
     
 
     
-    brute_obj = Brute.Brute(hostname, permutation_wordlist_path, brute_blob, paths_wordlist_path, regions_wordlist_path, proxy=http_proxy)
-    enumeration_obj = Enumeration.Enumeration(hostname, emails, output, threads, proxy=http_proxy, socks=socks_proxy, tor=tor)
+    brute_obj = Brute.Brute(hostname, permutation_wordlist_path, brute_blob, paths_wordlist_path, regions_wordlist_path, proxy="")
+    enumeration_obj = Enumeration.Enumeration(hostname, emails, output, threads, proxy="", socks=socks_proxy, tor=tor)
     if enum_mails:
         enumeration_obj.process_emails()
     enumeration_obj.get_user_realm_info()

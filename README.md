@@ -45,8 +45,8 @@ Options:
                                   Show completion for the specified shell, to
                                   copy it or customize the installation.
   --help                          Show this message and exit.
-
 ```
+
 #### Features
 - [x] Enumerate tenant
 - [x] Enumerate users from a given hostname

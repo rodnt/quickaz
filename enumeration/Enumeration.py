@@ -8,6 +8,7 @@ import socket
 import random
 import time
 import subprocess
+from utils import ifconfigme
 
 headers = {
 
@@ -99,10 +100,13 @@ class Enumeration:
             number = random.randint(1, 100)
             random_email = f'random{number}@{self.hostname}'
             if self.is_email_valid(random_email):
-                print(color_bad(f"Random email is valid, you are blocked, sleep 10 seconds.. and try again.."))
-                time.sleep(10)
+                print(color_bad(f"Random email is valid, you are blocked, sleep 60 seconds.. and try again.."))
+                time.sleep(60)
                 if self.is_email_valid(random_email):
                     print(color_bad(f"Random email still valid, you are blocked!!"))
+                    print("[+] brute force using tor..")
+                    ifconfigme.check_ip()
+                    self.is_email_valid(email,tor=True)
         else: 
             if self.is_email_valid(email) and self.output is not None:
                 print(f'{email} - VALID')
@@ -110,7 +114,7 @@ class Enumeration:
                 with open(self.output + file_write, 'a+') as output_file:
                     output_file.write(email + '\n')
 
-    def is_email_valid(self, email):
+    def is_email_valid(self, email, tor=False):
         url = 'https://login.microsoftonline.com/common/GetCredentialType'
         body = '{"Username":"%s"}' % email
         session = requests.Session()
@@ -120,6 +124,11 @@ class Enumeration:
             subprocess.run(["sudo", "service", "tor", "restart"])
         if self.socks:
             session.proxies = self.socks
+
+        if tor:
+            session.proxies = {'http':  'socks5://localhost:9050',
+                   'https': 'socks5://localhost:9050'}
+            subprocess.run(["sudo", "service", "tor", "restart"])
 
         request = requests.post(url, data=body, headers=headers, verify=False, proxies=self.proxy)
         response = request.text
