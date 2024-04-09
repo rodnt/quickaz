@@ -60,6 +60,7 @@ Options:
 - [x] Container finder
 - [x] Storage finder
 - [x] Find Tenant names
+- [x] Find dev.azure.com/ORG names
 - [x] Find OneDrive Urls 
 - [x] Finding open queue,dfs,files,web
 - [x] Enumerate mail users o365
