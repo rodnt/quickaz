@@ -6,45 +6,33 @@
 ![](static/Hello.jpeg)
 
 ```console
-Usage: quickaz.py [OPTIONS] HOSTNAME [PERMUTATION_WORDLIST_PATH] [BRUTE_BLOB]
-                  [PATHS_WORDLIST_PATH] [REGIONS_WORDLIST_PATH] [EMAILS]
-                  [OUTPUT] [ENUM_MAILS] [GEN_EMAILS] [FIRST_NAMES]
-                  [LAST_NAMES] [THREADS]
+Usage: quickaz.py [OPTIONS] HOSTNAME
 
-Arguments:
-  HOSTNAME                     Target hostname example.com  [required]
-  [PERMUTATION_WORDLIST_PATH]  Wordlist with common names to permute while
-                               brute force blobs and others services
-                               [default: wordlists/permutation.txt]
-  [BRUTE_BLOB]                 Enable brute force blobs  [default: False]
-  [PATHS_WORDLIST_PATH]        Wordlist with common paths to discover open
-                               containers  [default: wordlists/paths.txt]
-  [REGIONS_WORDLIST_PATH]      Wordlist with common regions to discover
-                               cloudpass  [default: wordlists/regions.txt]
-  [EMAILS]                     Wordlist with emails to enumerate
-  [OUTPUT]                     Output folder  [default: output]
-  [ENUM_MAILS]                 Enable enumerate emails from wordlist provided
-                               or from email generator  [default: False]
-  [GEN_EMAILS]                 Email pattern to generate emails based on
-                               schemas: foo.bar@example.com or
-                               fbar@example.com
-  [FIRST_NAMES]                Wordlist with firstnames to generate with
-                               gen_emails flag  [default:
-                               wordlists/names/brazil_firstnames.txt]
-  [LAST_NAMES]                 Wordlist with surname to generate with
-                               gen_emails flag  [default:
-                               wordlists/names/brazil_secondname.txt]
-  [THREADS]                    Threads while enumerate emails > 2 maybe you
-                               get false positives  [default: 2]
-
-Options:
-  --verbose / --no-verbose        [default: no-verbose]
-  --install-completion [bash|zsh|fish|powershell|pwsh]
-                                  Install completion for the specified shell.
-  --show-completion [bash|zsh|fish|powershell|pwsh]
-                                  Show completion for the specified shell, to
-                                  copy it or customize the installation.
-  --help                          Show this message and exit.
+╭─ Arguments ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ *    hostname      TEXT  [default: None] [required]                                                                                                                                                                                      │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ Options ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ --permutation-wordlist-path                           TEXT  Wordlist with common names to permute while brute force blobs and others services [default: wordlists/permutation.txt]                                                       │
+│ --brute-blob                   --no-brute-blob              Enable brute force blobs [default: no-brute-blob]                                                                                                                            │
+│ --brute-dev-blob               --no-brute-dev-blob          Enable brute force dev.azure.com/[org-id] [default: no-brute-dev-blob]                                                                                                       │
+│ --paths-wordlist-path                                 TEXT  Wordlist with common paths to discover open containers [default: wordlists/paths.txt]                                                                                        │
+│ --regions-wordlist-path                               TEXT  Wordlist with common regions to discover cloudpass [default: wordlists/regions.txt]                                                                                          │
+│ --verbose                      --no-verbose                 [default: no-verbose]                                                                                                                                                        │
+│ --emails                                              TEXT  Wordlist with emails to enumerate [default: None]                                                                                                                            │
+│ --output                                              TEXT  Output folder [default: output]                                                                                                                                              │
+│ --enum-mails                   --no-enum-mails              Enable enumerate emails from wordlist provided or from email generator [default: no-enum-mails]                                                                              │
+│ --gen-emails                                          TEXT  Email pattern to generate emails based on schemas: foo.bar@example.com or fbar@example.com                                                                                   │
+│ --first-names                                         TEXT  Wordlist with firstnames to generate with gen_emails flag [default: wordlists/names/brazil_firstnames.txt]                                                                   │
+│ --last-names                                          TEXT  Wordlist with surname to generate with gen_emails flag [default: wordlists/names/brazil_secondname.txt]                                                                      │
+│ --threads                                             TEXT  Threads while enumerate emails > 2 maybe you get false positives [default: 2]                                                                                                │
+│ --enumall                      --no-enumall                 Enumerate web,queue,files and others [default: no-enumall]                                                                                                                   │
+│ --proxy                                               TEXT  Proxy to use                                                                                                                                                                 │
+│ --socks-proxy                                         TEXT  Socks proxy to use                                                                                                                                                           │
+│ --tor                          --no-tor                     Use tor proxy [default: no-tor]                                                                                                                                              │
+│ --install-completion                                        Install completion for the current shell.                                                                                                                                    │
+│ --show-completion                                           Show completion for the current shell, to copy it or customize the installation.                                                                                             │
+│ --help                                                      Show this message and exit.                                                                                                                                                  │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
 ```
 
 ##### TODO List :)
