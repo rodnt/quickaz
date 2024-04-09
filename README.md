@@ -65,12 +65,14 @@ Usage: quickaz.py [OPTIONS] HOSTNAME
   - `python3 quickaz.py example --enumall --brute-blob --output example`
 - Usage with proxy
   - `python3 quickaz.py example.com --enumall --output example --proxy 127.0.0.1:808`
+- Help menu
+  - `python3 quickaz.py --help`
 
 ##### Install
 
 ```bash
-python3 -m pip install typer[all]
-python3 -m pip install requests
+
+python3 -m pip install -r requirements.txt --user
 ```
 
 ##### Useful google dorks
